@@ -16,6 +16,6 @@ class User(AbstractUser):
         self.balance -= amount
         self.save()
 
-    def transfer(self, amount, to_user):
+    def transfer(self, to_user, amount):
         self.withddraw(amount)
         to_user.deposit(amount)
