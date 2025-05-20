@@ -51,6 +51,6 @@ class TransferView(APIView):
         try:
             user.transfer(to_user, amount)
 
-            return Response({'status': 'success', 'balance': user.balance})
+            return Response({'status': 'success', 'from_user_balance': user.balance, 'to_user_balance': to_user.balance})
         except ValueError as e:
             return Response({'status': 'error', 'message': str(e)})
