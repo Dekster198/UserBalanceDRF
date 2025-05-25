@@ -44,5 +44,5 @@ class UserBalanceTests(APITestCase):
         response = self.client_from_user.post(url, data)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(self.from_user.balance - data['amount'], response.data['balance'])
-
+        self.assertEqual(self.from_user.balance - data['amount'], response.data['from_user_balance'])
+        self.assertEqual(self.to_user.balance + data['amount'], response.data['to_user_balance'])
