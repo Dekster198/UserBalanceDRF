@@ -7,6 +7,7 @@ from .serializers import *
 
 
 class UserBalanceView(APIView):
+    """Получение баланса пользователя"""
     def get(self, request, user_id):
         user = get_object_or_404(User, id=user_id)
         serializer = UserBalanceSerializer(user)
@@ -15,6 +16,7 @@ class UserBalanceView(APIView):
 
 
 class DepositView(APIView):
+    """Пополнение баланса пользователя"""
     def post(self, request, user_id):
         user = get_object_or_404(User, id=user_id)
         serializer = DepositSerializer(data=request.data)
@@ -26,6 +28,7 @@ class DepositView(APIView):
 
 
 class WithdrawView(APIView):
+    """Снятие денег с баланса пользователя"""
     def post(self, request, user_id):
         user = get_object_or_404(User, id=user_id)
         serializer = WithdrawSerializer(data=request.data)
@@ -40,6 +43,7 @@ class WithdrawView(APIView):
 
 
 class TransferView(APIView):
+    """Перевод денег с одного баланса на другой"""
     def post(self, request, from_user_id):
         user = get_object_or_404(User, id=from_user_id)
         serializer = TransferSerializer(data=request.data)
